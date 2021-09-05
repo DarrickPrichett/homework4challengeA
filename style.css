@@ -24,7 +24,7 @@ body {
     height: 100vw;
     justify-content: center;
     align-items: center;
-    background-color: hsl(var(--hue), 100%, 20%);
+    background-color: blue;
 }
 
 .correct {

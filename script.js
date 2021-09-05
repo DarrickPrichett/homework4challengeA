@@ -34,8 +34,8 @@ function setNextQuestion() {
 let shuffleQuestions, currentQuestionIndex
 
 function showQuestion(question) {
-    questionElement.innerText = question.question
-    questionElement.choice.forEach(choice => {
+    questionContainerElement.innerText = question.question
+    questionContainerElement.choice.forEach(choice => {
         let button = document.createElement('button')
         button.innerText = answer.innerText
         button.classList.add('btn')
