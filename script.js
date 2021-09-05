@@ -7,99 +7,50 @@ let correctAnswers = 0;
 let wrongAnswers = 0;
 var questions = [
     {
-        title: "The external JavaScript file must contain the <script> tag.",
-        choice: "True",
-        choice: "False",
-        answer: "False"
+        question: "The external JavaScript file must contain the <script> tag.",
+        answer: [{text: "True", correct:  false}, { text: "False", correct: true}],
     },
     {
-        title: "Which one of these keywords is NOT a JavaScript data type",
-        choice: "undefined",
-        choice: "boolean",
-        choice: "dictionary",
-        choice: "string",
-        answer: "dictionary"
+        question: "Which one of these keywords is NOT a JavaScript data type",
+        answer: [{text: "undefined", correct: false}, {text: "boolean", correct: false}, {text: "dictionary", correct: true}, {text: "string", correct: false}], 
     },
     {
-        title: "How do you create a function in JavaScript?",
-        choice1: "function myFunction()",
-        choice2: "function.myFunction",
-        choice3: "function(myFunction)",
-        choice4: "function.myFunction()",
-        answer: "function myFunction()"
+        question: "How do you create a function in JavaScript?",
+        answer: [{text: "function myFunction()", correct: true}, {text: "function.myFunction", correct: false}, {text: "function(myFunction)", correct: false}, {text: "function.myFunction()", correct: false}],
     },
     {
-        title: "How do you call a function named 'myFunction'?",
-        choice1: "call myFunction()",
-        choice2: "call function myFunction()",
-        choice3: "myFunction()",
-        answer: "myFunction()"
+        question: "How do you call a function named 'myFunction'?",
+        answer: [{text: "call myFunction()", correct: false}, {text: "call function myFunction()", correct: false}, {text: "myFunction()", correct: true}]
     },
     {
-        title: "Where is the correct place to insert a JavaScript?",
-        choice1: "The <head> section",
-        choice2: "Both the <head> and the <body> section are correct",
-        choice3: "The <body> section",
-        choice4: "Anywhere in the JavaScript",
-        answer: "Both the <head> and the <body> section are correct"
+        question: "Where is the correct place to insert a JavaScript?",
+        answer: [{text: "The <head> section", correct: false}, {text: "Both the <head> and the <body> section are correct", correct: true}, {text: "The <body> section", correct: false}, {text: "Anywhere in the JavaScript", correct: false}],
     },
     {
-        title: "What is the correct syntax for referring to an external script called 'xxx.js'?",
-        choice1: "<script href='xxx.js'> ",
-        choice2: "<script ref='xxx.js'>",
-        choice3: "<script name='xxx.js'>",
-        choice4: "<script src='xxx.js'>",
-        answer: "<script src='xxx.js'>"
+        question: "What is the correct syntax for referring to an external script called 'xxx.js'?",
+        answer: [{text:"<script href='xxx.js'>", correct: false}, {text: "<script ref='xxx.js'>", correct: false}, {text: "<script name='xxx.js'>", correct: false}, {text:"<script src='xxx.js'>", correct: true}],
     },
     {
-        title: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
-        choice1: "if i<>5",
-        choice2: "if(i! = 5)",
-        choice3: "if i=! 5 then",
-        choice4: "if(i<>5)",
-        answer: "if(i! = 5)"
+        question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+        answer: [{text: "if i<>5", correct: false}, {text: "if(i! = 5)", correct: true},  {text: "if i=! 5 then", correct: false}, {text: "if(i<>5)", correct: false}],
     },
     {
-        title: "What is the correct JavaScript syntax to write 'Hello World'?",
-        choice1: "('Hello World');",
-        choice2: "echo 'Hello World';",
-        choice3: "document.write('Hello World');",
-        choice4: "response.write('Hello World');",
-        answer: "document.write('Hello World');"
+        question: "What is the correct JavaScript syntax to write 'Hello World'?",
+        answer: [{text: "('Hello World');", correct: false}, {text: "echo 'Hello World';", correct: false}, {text: "document.write('Hello World');", correct: true}, {text: "response.write('Hello World');", correct: false}],
     },
     {
-        title: "How do you write 'Hello World' in an alert box?",
-        choice1: "msg('Hello World');",
-        choice2: "alert('Hello World');",
-        choice3: "msgBox('Hello World');",
-        choice4: "alertBox('Hello World');",
-        answer: "alert('Hello World');"
+        question: "How do you write 'Hello World' in an alert box?",
+        answer: [{text: "msg('Hello World');", correct: false}, {text: "alert('Hello World');", correct: true}, {text: "msgBox('Hello World');", correct: false}, {text: "alertBox('Hello World');", correct: false}],
     },
     {
-        title: "How to write an IF statement in JavaScript?",
-        choice1: "if i = 5 then",
-        choice2: "if i = 5",
-        choice3: "if i == 5 then",
-        choice4: "if(i == 5)",
-        answer: "if(i == 5)"
+        question: "How to write an IF statement in JavaScript?",
+        answer: [{text: "if i = 5 then", correct: false}, {text: "if i = 5", correct: false}, {text: "if i == 5 then", correct: false}, {text: "if(i == 5)", correct: true}],
     },
     {
-        title: "Inside which HTML element do we put the JavaScript?",
-        choice1: "js tag",
-        choice2: "javascript tag",
-        choice3: "script tag",
-        choice4: "scripting tag",
+        question: "Inside which HTML element do we put the JavaScript?",
+        answer: [{text: "js tag", correct: false}, {text: "javascript tag", correct: false},  {text:"script tag", correct: true}, {text:"scripting tag", correct: false}], 
         answer: "script tag"
     },
-    {
-        title: "question?",
-        choice1: "",
-        choice2: "",
-        choice3: "",
-        choice4: "",
-        answer: ""
-    },
- 
 ]
 
 startButton.addEventListener('click', startGame)
@@ -108,11 +59,12 @@ function startGame() {
     console.log('Started')
     startButton.classList.add('hide')
     questionContainerElement.classList.remove('hide')
+    setNextQuestion()
     // Iterate over the questions array and display each question in a confirmation box
     for(let i = 0; i < questions.length; i++) {
-    const answer = confirm(questions[i].title);
+    var answer = confirm(questions[i].question);
     // function to check whether answer is right or wrong. Increment the score accordingly
-    if (answer === choice[i].answer) {
+    if (answer === questions[i].answer) {
     correctAnswers++;
     alert('You are correct');
 } else {
@@ -124,14 +76,14 @@ function startGame() {
 
 function setNextQuestion() {
     resetState()
-    showQuestion(shuffleQuestions[currentQuestionIndex])
+    questions([currentQuestionIndex])
 }
 
-let shuffleQuestions, currentQuestionIndex
+let currentQuestionIndex
 
 var toggle = function showQuestion(question) {
     questionContainerElement.innerText = question.question
-    questionContainerElement.choice.forEach(choice => {
+    questionContainerElement.answer.forEach(answer => {
         let button = document.createElement('button')
         button.innerText = answer.innerText
         button.classList.add('btn')
@@ -179,7 +131,7 @@ var timer = 60
 var index = 0
 function test(){
     var example = document.getElementById("example")
-    example.testContent = questions.index.title
+    example.testContent = questions.index.question
 }
 
 function timer () {
