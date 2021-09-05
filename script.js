@@ -1,8 +1,7 @@
 const startButton = document.getElementById('start-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
-const answerButtonElement = document.getElementById('answers-buttons')
-let shuffleQuestions, currentQuestionIndex
+const answerButtonElement = document.getElementById('answer-buttons')
 
 startButton.addEventListener('click', startGame)
 
@@ -19,17 +18,19 @@ function setNextQuestion() {
     showQuestion(shuffleQuestions[currentQuestionIndex])
 }
 
+let shuffleQuestions, currentQuestionIndex
+
 function showQuestion(question) {
     questionElement.innerText = question.question
-    questionElement.answers.forEach(answer => {
-        const button = document.createElement('button')
+    questionElement.choice.forEach(choice => {
+        let button = document.createElement('button')
         button.innerText = answer.innerText
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
         }
         button.addEventListener('click', selectAnswer)
-        answerButtonsElement.appendChile(button)
+        answerButtonElement.appendChild(button)
     })
 }
 
