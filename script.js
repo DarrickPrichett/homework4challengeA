@@ -5,74 +5,6 @@ const answerButtonElement = document.getElementById('answer-buttons')
 // create a function to keep track of the score
 let correctAnswers = 0;
 let wrongAnswers = 0;
-
-startButton.addEventListener('click', startGame)
-
-function startGame() {
-    console.log('Started')
-    startButton.classList.add('hide')
-    questionContainerElement.classList.remove('hide')
-    // Iterate over the questions array and display each question in a confirmation box
-    for(let i = 0; i < questions.length; i++) {
-    const answer = confirm(questions[i].title);
-    // function to check whether answer is right or wrong. Increment the score accordingly
-    if (answer === choice[i].answer) {
-    correctAnswers++;
-    alert('You are correct');
-} else {
-    timer -= 10;
-    alert('You are incorrect');
-}
-    setNextQuestion()
-}
-
-function setNextQuestion() {
-    resetState()
-    showQuestion(shuffleQuestions[currentQuestionIndex])
-}
-
-let shuffleQuestions, currentQuestionIndex
-
-var toggle = function showQuestion(question) {
-    questionContainerElement.innerText = question.question
-    questionContainerElement.choice.forEach(choice => {
-        let button = document.createElement('button')
-        button.innerText = answer.innerText
-        button.classList.add('btn')
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }
-        button.addEventListener('click', selectAnswer)
-        answerButtonElement.appendChild(button)
-    })
-}
-
-function resetState() {
-    while (answerButtonElement.firstChild)  {
-        answerButtonElement.removeChild
-        (answerButtonElement.firstChild)
-    }
-    
-}
-
-function selectAnswer(e) {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    setStatusClass(document, correct)
-    Array.from(answerButtonElement.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
-}
-
-function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-        element.classList.add('correct')
-    } else {
-        
-    }
-}
-
 var questions = [
     {
         title: "The external JavaScript file must contain the <script> tag.",
@@ -169,6 +101,74 @@ var questions = [
     },
  
 ]
+
+startButton.addEventListener('click', startGame)
+
+function startGame() {
+    console.log('Started')
+    startButton.classList.add('hide')
+    questionContainerElement.classList.remove('hide')
+    // Iterate over the questions array and display each question in a confirmation box
+    for(let i = 0; i < questions.length; i++) {
+    const answer = confirm(questions[i].title);
+    // function to check whether answer is right or wrong. Increment the score accordingly
+    if (answer === choice[i].answer) {
+    correctAnswers++;
+    alert('You are correct');
+} else {
+    timer -= 10;
+    alert('You are incorrect');
+}
+    setNextQuestion()
+}
+
+function setNextQuestion() {
+    resetState()
+    showQuestion(shuffleQuestions[currentQuestionIndex])
+}
+
+let shuffleQuestions, currentQuestionIndex
+
+var toggle = function showQuestion(question) {
+    questionContainerElement.innerText = question.question
+    questionContainerElement.choice.forEach(choice => {
+        let button = document.createElement('button')
+        button.innerText = answer.innerText
+        button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonElement.appendChild(button)
+    })
+}
+
+function resetState() {
+    while (answerButtonElement.firstChild)  {
+        answerButtonElement.removeChild
+        (answerButtonElement.firstChild)
+    }
+    
+}
+
+function selectAnswer(e) {
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+    setStatusClass(document, correct)
+    Array.from(answerButtonElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+}
+
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        
+    }
+}
+
 
 
 
