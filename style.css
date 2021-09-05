@@ -9,7 +9,14 @@ header {
     text-align:center;
 }
 
+:root {
+    --hue-neutral: blue;
+    --hue-correct: green;
+    --hue-wrong: red;
+}
+
 body {
+    --hue: var(--hue-neutral);
     padding: 0;
     margin: 0;
     display: flex;
@@ -17,23 +24,29 @@ body {
     height: 100vw;
     justify-content: center;
     align-items: center;
-    background-color: blue;
-    
+    background-color: hs1(var(--hue), 100%, 20%);
 }
 
-.start {
+body.correct {
+    --hue:var(--hue-correct)
+}
+
+body.wrong {
+    --hue:var(--hue-wrong)
+}
+
+.container1 {
     width: 800px;
     max-width: 80%;
-    background-color: white;
+    background-color: gold;
     border-radius: 5px;
     padding: 10px;
-    background-color: yellowgreen;
 }
 
-.container {
+.container2 {
     width: 800px;
     max-width: 80%;
-    background-color: white;
+    background-color: blue;
     border-radius: 5px;
     padding: 10px;
 }
@@ -57,7 +70,7 @@ body {
     background-color: yellow;
 }
 
-.start-btn {
+.start-btn, .next-btn{
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;

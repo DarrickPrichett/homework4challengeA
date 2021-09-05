@@ -10,12 +10,11 @@
 </head>
 
 <body>
-    <div>
-        <header id="header" class="start">Code Quiz Challenge!</header>
-<p id="header" class="start">You have 60 seconds to complete the quiz, 5 second time penalty for wrong answers.</p>
-        <button id="start-btn" class="start-btn btn">Start</button>
+    <div id="header" class="container1">
+        <header>Code Quiz Challenge!</header>
+        <p>You have 60 seconds to complete the quiz, 5 second time penalty for wrong answers.</p>
     </div>
-    <div class="container">
+    <div class="container2">
         <div id="question-container" class="hide">
             <div id="question">Question</div>
             <div id="answer-buttons" class="btn-grid">
@@ -23,10 +22,12 @@
                 <button class="btn">Answer 2</button>
                 <button class="btn">Answer 3</button>
                 <button class="btn">Answer 4</button>
-            
             </div>
         </div>
-        
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
+        </div>
     </div>
 </body>
 </html>

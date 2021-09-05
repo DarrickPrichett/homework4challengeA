@@ -45,6 +45,19 @@ function resetState() {
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
+    setStatusClass(document, correct)
+    Array.from(answerButtonElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+}
+
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        
+    }
 }
 
 const questions = [
@@ -52,50 +65,5 @@ const questions = [
         question: "What is 2 + 2?",
         answers: [{text: '4', correct: true}, {text: '22', correct: false}
     ]
-    },
-    {
-        title: "question 2",
-        choices: ["test1", "test2", "test3", "test4"],
-        answer: "test2"
-    },
-    {
-        title: "question 3",
-        choices: ["test1", "test2", "test3", "test4"],
-        answer: "test3"
-    },
-    {
-        title: "question 4",
-        choices: ["test1", "test2", "test3", "test4"],
-        answer: "test4"
-    },
-    {
-        title: "question 5",
-        choices: ["test1", "test2", "test3", "test4"],
-        answer: "test3"
-    },
-    {
-        title: "question 6",
-        choices: ["test1", "test2", "test3", "test4"],
-        answer: "test1"
-    },
-    {
-        title: "question 7",
-        choices: ["test1", "test2", "test3", "test4"],
-        answer: "test4"
-    },
-    {
-        title: "question 8",
-        choices: ["test1", "test2", "test3", "test4"],
-        answer: "test2"
-    },
-    {
-        title: "question 9",
-        choices: ["test1", "test2", "test3", "test4"],
-        answer: "test2"
-    },
-    {
-        title: "question 10",
-        choices: ["test1", "test2", "test3", "test4"],
-        answer: "test3"
-    },
+    }
 ]
