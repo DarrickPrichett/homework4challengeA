@@ -13,8 +13,8 @@ function startGame() {
     startButton.classList.add('hide')
     questionContainerElement.classList.remove('hide')
     // Iterate over the questions array and display each question in a confirmation box
-    for(let i = 0; i < choice.length; i++) {
-    const answer = confirm(choice[i].title);
+    for(let i = 0; i < questions.length; i++) {
+    const answer = confirm(questions[i].title);
     // function to check whether answer is right or wrong. Increment the score accordingly
     if (answer === choice[i].answer) {
     correctAnswers++;
@@ -33,7 +33,7 @@ function setNextQuestion() {
 
 let shuffleQuestions, currentQuestionIndex
 
-function showQuestion(question) {
+var toggle = function showQuestion(question) {
     questionContainerElement.innerText = question.question
     questionContainerElement.choice.forEach(choice => {
         let button = document.createElement('button')
