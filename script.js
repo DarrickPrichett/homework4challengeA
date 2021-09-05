@@ -1,9 +1,9 @@
 const startButton = document.getElementById('start-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
-const answerButtonElement = document.getElementById('answer-buttons')
+const answerButtonElement = document.getElementById('answer-buttons') 
+let shuffledQuestions, currentQuestionIndex
 // create a function to keep track of the score
-let correctAnswers = 0;
 let wrongAnswers = 0;
 var questions = [
     {
@@ -58,34 +58,20 @@ startButton.addEventListener('click', startGame)
 function startGame() {
     console.log('Started')
     startButton.classList.add('hide')
+    shuffledQuestions = questions.sort(() => Math.random() -.5)
+    currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide')
     setNextQuestion()
-    // Iterate over the questions array and display each question in a confirmation box
-    for(let i = 0; i < questions.length; i++) {
-    var answer = confirm(questions[i].question);
-    // function to check whether answer is right or wrong. Increment the score accordingly
-    if (answer === questions[i].answer) {
-    correctAnswers++;
-    alert('You are correct');
-} else {
-    timer -= 10;
-    alert('You are incorrect');
 }
-    setNextQuestion()
-}
-
 function setNextQuestion() {
     resetState()
-    questions([currentQuestionIndex])
+    showQuestion(shuffledQuestions[currentQuestionIndex])
 }
-
-let currentQuestionIndex
-
-var toggle = function showQuestion(question) {
-    questionContainerElement.innerText = question.question
-    questionContainerElement.answer.forEach(answer => {
-        let button = document.createElement('button')
-        button.innerText = answer.innerText
+function showQuestion(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
@@ -93,15 +79,38 @@ var toggle = function showQuestion(question) {
         button.addEventListener('click', selectAnswer)
         answerButtonElement.appendChild(button)
     })
-}
-
+} 
 function resetState() {
     while (answerButtonElement.firstChild)  {
         answerButtonElement.removeChild
         (answerButtonElement.firstChild)
     }
+}
+
+// Iterate over the questions array and display each question in a confirmation box
+for(let i = 0; i < questions.length; i++) {
+var answer = confirm(questions[i].question);
+
+// function to check whether answer is right or wrong. Increment the score accordingly
+if (answer === questions[i].answer) {
+    correctAnswers++;
+    alert('You are correct');
+} else {
+    timer -= 10;
+    alert('You are incorrect');
+}
+    setNextQuestion()
+
+
+function showQuestion(question) {
     
 }
+
+
+
+}
+
+
 
 function selectAnswer(e) {
     const selectedButton = e.target
@@ -119,12 +128,6 @@ function setStatusClass(element, correct) {
     } else {
         
     }
-}
-
-
-
-
-
 }
 // function for timer
 var timer = 60
