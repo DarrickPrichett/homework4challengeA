@@ -24,15 +24,15 @@ body {
     height: 100vw;
     justify-content: center;
     align-items: center;
-    background-color: hs1(var(--hue), 100%, 20%);
+    background-color: hsl(var(--hue), 100%, 20%);
 }
 
-body.correct {
-    --hue:var(--hue-correct)
+.correct {
+    background-color: var(--hue-correct)
 }
 
-body.wrong {
-    --hue:var(--hue-wrong)
+.wrong {
+    background-color: var(--hue-wrong)
 }
 
 .container1 {
