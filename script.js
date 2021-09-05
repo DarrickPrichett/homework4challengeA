@@ -2,14 +2,27 @@ const startButton = document.getElementById('start-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonElement = document.getElementById('answer-buttons')
+// create a function to keep track of the score
+let correctAnswers = 0;
+let wrongAnswers = 0;
 
 startButton.addEventListener('click', startGame)
 
 function startGame() {
     console.log('Started')
     startButton.classList.add('hide')
-    shuffleQuestions = questions.sort(() => Math.random() - .5),  currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
+    // Iterate over the questions array and display each question in a confirmation box
+    for(let i = 0; i < choice.length; i++) {
+    const answer = confirm(choice[i].title);
+    // function to check whether answer is right or wrong. Increment the score accordingly
+    if (answer === choice[i].answer) {
+    correctAnswers++;
+    alert('You are correct');
+} else {
+    timer -= 10;
+    alert('You are incorrect');
+}
     setNextQuestion()
 }
 
@@ -63,16 +76,16 @@ function setStatusClass(element, correct) {
 var questions = [
     {
         title: "The external JavaScript file must contain the <script> tag.",
-        choice1: "True",
-        choice2: "False",
+        choice: "True",
+        choice: "False",
         answer: "False"
     },
     {
         title: "Which one of these keywords is NOT a JavaScript data type",
-        choice1: "undefined",
-        choice2: "boolean",
-        choice3: "dictionary",
-        choice4: "string",
+        choice: "undefined",
+        choice: "boolean",
+        choice: "dictionary",
+        choice: "string",
         answer: "dictionary"
     },
     {
@@ -157,21 +170,8 @@ var questions = [
  
 ]
 
-// create a function to keep track of the score
-let correctAnswers = 0;
-let wrongAnswers = 0;
 
-// Iterate over the questions array and display each question in a confirmation box
-for(let i = 0; i < questions.length; i++) {
-    const answer = confirm(questions[i].title);
-// function to check whether answer is right or wrong. Increment the score accordingly
-if (answer === questions[i].answer) {
-    correctAnswers++;
-    alert('You are correct');
-} else {
-    timer -= 10;
-    alert('You are incorrect');
-}
+
 
 }
 // function for timer
