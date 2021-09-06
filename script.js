@@ -131,9 +131,9 @@ function clearStatusClass(element, correct) {
 //         quizOver()
 //    }
 //}
-
+var timeLeft = 60;
 function countdown() {
-    var timeLeft = 60;
+    
     var timeInterval = setInterval(function() {
       if (timeLeft > 1) {
         timerEl.textContent = timeLeft + ' seconds remaining';
@@ -148,7 +148,7 @@ function countdown() {
     }, 1000);
   }
 
-  startBtn.onclick = countdown;
+  startButton.onclick = countdown;
 
 // function for quizOver
 function quizOver(){
