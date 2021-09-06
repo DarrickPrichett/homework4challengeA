@@ -1,4 +1,4 @@
-var timerEl = document.getElementById('seconds-remaining-btn');
+var timerEl = document.getElementById('time-remaining-btn');
 var mainEl = document.getElementById('main');
 const startButton = document.getElementById('start-btn')
 const questionContainerElement = document.getElementById('question-container')
@@ -136,10 +136,10 @@ function countdown() {
     
     var timeInterval = setInterval(function() {
       if (timeLeft > 1) {
-        timerEl.textContent = timeLeft + ' seconds remaining';
+        timerEl.textContent = timeLeft + 'seconds remaining';
         timeLeft--;
       } else if (timeLeft === 1) {
-        timerEl.textContent = timeLeft + ' second remaining';
+        timerEl.textContent = timeLeft + 'second remaining';
         timeLeft--;
       } else {
         timerEl.textContent = '';
