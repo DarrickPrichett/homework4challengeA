@@ -1,4 +1,4 @@
-var timerEl = document.getElementById('countdown');
+var timerEl = document.getElementById('seconds-remaining-btn');
 var mainEl = document.getElementById('main');
 const startButton = document.getElementById('start-btn')
 const questionContainerElement = document.getElementById('question-container')
@@ -55,7 +55,7 @@ var questions = [
     },
 ]
 
-startButton.addEventListener('click', startGame)
+startButton.addEventListener('click', startGame, countdown)
 
 function startGame() {
     console.log('Started')
