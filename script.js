@@ -6,6 +6,7 @@ const questionElement = document.getElementById('question')
 const answerButtonElement = document.getElementById('answer-buttons') 
 let shuffledQuestions, currentQuestionIndex
 // create a function to keep track of the score
+let correctAnswers = 0;
 let wrongAnswers = 0;
 var questions = [
     {
@@ -50,12 +51,11 @@ var questions = [
     },
     {
         question: "Inside which HTML element do we put the JavaScript?",
-        answer: [{text: "js tag", correct: false}, {text: "javascript tag", correct: false},  {text:"script tag", correct: true}, {text:"scripting tag", correct: false}], 
-        answer: "script tag"
+        answer: [{text: "js tag", correct: false}, {text: "javascript tag", correct: false},  {text:"script tag", correct: true}, {text:"scripting tag", correct: false}],
     },
 ]
 
-startButton.addEventListener('click', startGame, countdown)
+startButton.addEventListener('click', startGame)
 
 function startGame() {
     console.log('Started')
@@ -63,6 +63,7 @@ function startGame() {
     shuffledQuestions = questions.sort(() => Math.random() -.5)
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide')
+    countdown()
     setNextQuestion()
 }
 function setNextQuestion() {
@@ -78,6 +79,9 @@ function showQuestion(question) {
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
+
+        } else {
+            timeLeft-=10
         }
         button.addEventListener('click', selectAnswer)
         answerButtonElement.appendChild(button)
@@ -93,17 +97,21 @@ function resetState() {
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
-    setStatusClass(document, correct)
+    currentQuestionIndex++
+//    setStatusClass(document, correct)
     Array.from(answerButtonElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1)
 {
     startButton.innerText = 'Restart'
+    setNextQuestion()
+}else{
     startButton.classList.remove('hide')
 }}
 
 function setStatusClass(element, correct) {
+    console.log(element)
     clearStatusClass(element)
     if (correct) {
         element.classList.add('correct')
@@ -117,21 +125,7 @@ function clearStatusClass(element, correct) {
     element.classList.remove('wrong')
 }
 
-// function for timer
-//var timer = 60
-//var index = 0
-//function test(){
-//    var example = document.getElementById("time-remaining")
-//    example.testContent = .index.question
-//}
-
-//function timer () {
-//    timer --
-//    if (timer<=0){
-//         quizOver()
-//    }
-//}
-var timeLeft = 60;
+var timeLeft = 180;
 function countdown() {
     
     var timeInterval = setInterval(function() {
