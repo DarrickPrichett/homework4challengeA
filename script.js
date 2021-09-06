@@ -1,3 +1,5 @@
+var timerEl = document.getElementById('countdown');
+var mainEl = document.getElementById('main');
 const startButton = document.getElementById('start-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
@@ -68,8 +70,9 @@ function setNextQuestion() {
     showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 function showQuestion(question) {
+    console.log(question)
     questionElement.innerText = question.question
-    question.answers.forEach(answer => {
+    question.answer.forEach(answer => {
         const button = document.createElement('button')
         button.innerText = answer.text
         button.classList.add('btn')
@@ -87,31 +90,6 @@ function resetState() {
     }
 }
 
-// Iterate over the questions array and display each question in a confirmation box
-for(let i = 0; i < questions.length; i++) {
-var answer = confirm(questions[i].question);
-
-// function to check whether answer is right or wrong. Increment the score accordingly
-if (answer === questions[i].answer) {
-    correctAnswers++;
-    alert('You are correct');
-} else {
-    timer -= 10;
-    alert('You are incorrect');
-}
-    setNextQuestion()
-
-
-function showQuestion(question) {
-    
-}
-
-
-
-}
-
-
-
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -119,30 +97,59 @@ function selectAnswer(e) {
     Array.from(answerButtonElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
-}
+    if (shuffledQuestions.length > currentQuestionIndex + 1)
+{
+    startButton.innerText = 'Restart'
+    startButton.classList.remove('hide')
+}}
 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
         element.classList.add('correct')
     } else {
-        
+        element.classList.add('wrong')
     }
-}
-// function for timer
-var timer = 60
-var index = 0
-function test(){
-    var example = document.getElementById("example")
-    example.testContent = questions.index.question
 }
 
-function timer () {
-    timer --
-    if (timer<=0){
-         quizOver()
-    }
+function clearStatusClass(element, correct) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
 }
+
+// function for timer
+//var timer = 60
+//var index = 0
+//function test(){
+//    var example = document.getElementById("time-remaining")
+//    example.testContent = .index.question
+//}
+
+//function timer () {
+//    timer --
+//    if (timer<=0){
+//         quizOver()
+//    }
+//}
+
+function countdown() {
+    var timeLeft = 60;
+    var timeInterval = setInterval(function() {
+      if (timeLeft > 1) {
+        timerEl.textContent = timeLeft + ' seconds remaining';
+        timeLeft--;
+      } else if (timeLeft === 1) {
+        timerEl.textContent = timeLeft + ' second remaining';
+        timeLeft--;
+      } else {
+        timerEl.textContent = '';
+        clearInterval(timeInterval);
+      }
+    }, 1000);
+  }
+
+  startBtn.onclick = countdown;
+
 // function for quizOver
 function quizOver(){
     clearInterval(timer);
