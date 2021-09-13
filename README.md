@@ -13,7 +13,9 @@ To create a Code Quiz. The quiz contains multiple choice questions in an array w
 
 ## Website
 
+* https://darrickprichett.github.io/homework4challengeA/
 
+* https://github.com/DarrickPrichett/homework4challengeA
 
 ## Contribution
 Made by Darrick Prichett

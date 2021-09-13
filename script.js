@@ -82,6 +82,8 @@ function showQuestion(question) {
 
         } else {
             timeLeft-=10
+            console.log(timeLeft);
+            answer.correct= true
         }
         button.addEventListener('click', selectAnswer)
         answerButtonElement.appendChild(button)
@@ -132,12 +134,16 @@ function countdown() {
       if (timeLeft > 1) {
         timerEl.textContent = timeLeft + 'seconds remaining';
         timeLeft--;
+        console.log(timeLeft);
       } else if (timeLeft === 1) {
         timerEl.textContent = timeLeft + 'second remaining';
         timeLeft--;
+        console.log(timeLeft);
       } else {
-        timerEl.textContent = '';
+        timerEl.textContent = 0;
         clearInterval(timeInterval);
+        console.log(timeLeft);
+        quizOver();
       }
     }, 1000);
   }
